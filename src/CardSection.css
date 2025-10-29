@@ -1,0 +1,89 @@
+.eco-card-wrapper {
+  padding: 2rem;
+  background-color: var(--page-bg, #f7f7f7);
+}
+
+.eco-section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 20px;
+}
+
+.eco-card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.eco-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.eco-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.eco-card_image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.eco-card_body {
+  padding: 1rem;
+}
+
+.eco-tag {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+/* Tag color variants */
+.eco-tag-blue {
+  background-color: #007bff;
+}
+
+.eco-tag-green {
+  background-color: #28a745;
+}
+
+.eco-tag-red {
+  background-color: #dc3545;
+}
+
+.eco-tag-yellow {
+  background-color: #ffc107;
+  color: #000; /* Better contrast */
+}
+
+.eco-tag-teal {
+  background-color: #20c997;
+}
+
+.eco-tag-orange {
+  background-color: #fd7e14;
+}
+
+.eco-tag-gray {
+  background-color: #6c757d;
+}
+
+.eco-tag-pink {
+  background-color: #e83e8c;
+}
