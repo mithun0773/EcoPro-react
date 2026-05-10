@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -12,13 +13,16 @@ import {
   Menu,
   X,
   TrendingUp,
+  MessageSquare,
 } from "lucide-react";
 import { useTheme } from "../App";
+import FeedbackModal from "./FeedBackForm";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   const navLinks = [
     { to: "/", label: "Home", icon: <House size={17} /> },
@@ -75,6 +79,24 @@ const Navbar = () => {
         </div>
 
         <div style={styles.rightSection}>
+          {/* Feedback Button */}
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            style={styles.feedbackButton}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(59, 130, 246, 0.2)";
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+              e.currentTarget.style.transform = "scale(1)";
+            }}
+          >
+            <MessageSquare size={18} />
+            <span>Feedback</span>
+          </button>
+
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             style={styles.themeButton}
@@ -90,6 +112,7 @@ const Navbar = () => {
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
+          {/* Mobile Menu Button */}
           <button
             style={styles.mobileMenuButton}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -99,6 +122,7 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div style={styles.mobileMenu}>
           {navLinks.map((link, index) => (
@@ -115,8 +139,24 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <button
+            onClick={() => {
+              setFeedbackOpen(true);
+              setMobileMenuOpen(false);
+            }}
+            style={styles.mobileFeedbackButton}
+          >
+            <MessageSquare size={18} />
+            Feedback
+          </button>
         </div>
       )}
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={feedbackOpen}
+        onClose={() => setFeedbackOpen(false)}
+      />
     </>
   );
 };
@@ -191,6 +231,20 @@ const styles = {
     alignItems: "center",
     gap: "12px",
   },
+  feedbackButton: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    padding: "10px 16px",
+    background: "rgba(255, 255, 255, 0.1)",
+    border: "1px solid rgba(59, 130, 246, 0.3)",
+    color: "#fff",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "0.9rem",
+    fontWeight: "600",
+    transition: "all 0.3s ease",
+  },
   themeButton: {
     background: "rgba(255, 255, 255, 0.1)",
     border: "none",
@@ -241,6 +295,20 @@ const styles = {
     background: "rgba(59, 130, 246, 0.2)",
     color: "#93c5fd",
     fontWeight: "600",
+  },
+  mobileFeedbackButton: {
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+    padding: "14px 18px",
+    background: "rgba(59, 130, 246, 0.2)",
+    border: "1px solid rgba(59, 130, 246, 0.4)",
+    color: "#93c5fd",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "1rem",
+    fontWeight: "600",
+    transition: "all 0.2s ease",
   },
 };
 
